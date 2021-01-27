@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="book1" class="bean.Book">
+        <property name="id" value="1"></property>
+        <property name="name" value="西游记"></property>
+        <property name="price" value="12.23"></property>
+    </bean>
+
+    <bean id="book2" class="bean.Book">
+        <constructor-arg index="0" value="3"></constructor-arg>
+        <constructor-arg index="2" value="20.0"></constructor-arg>
+        <constructor-arg index="1" value="红楼梦"></constructor-arg>
+    </bean>
+
+    <bean id="user1" class="bean.User">
+        <property name="name" value="user1"></property>
+
+        <!--注入对象-->
+        <property name="book" ref="book1"></property>
+
+        <!--注入数组-->
+        <property name="favs">
+            <array>
+                <value>足球</value>
+                <value>蓝球</value>
+            </array>
+        </property>
+
+        <!--注入list-->
+        <property name="bookList">
+            <list>
+                <ref bean="book1"></ref>
+                <ref bean="book2"></ref>
+            </list>
+        </property>
+
+        <!--注入map-->
+        <property name="map">
+            <map>
+                <entry key="1" value="你好"></entry>
+                <entry key="2" value="我好"></entry>
+            </map>
+        </property>
+
+        <!--注入properties-->
+        <property name="info">
+            <props>
+                <prop key="id">12</prop>
+                <prop key="name">江南</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

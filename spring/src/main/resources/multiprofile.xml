@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <beans profile="dev">
+        <bean id="dataSource" class="multiprofile.DataSource">
+            <property name="url" value="http://191.122.34.23/"></property>
+            <property name="username" value="dev"></property>
+            <property name="password" value="123456"></property>
+        </bean>
+    </beans>
+
+    <beans profile="pro">
+        <bean id="dataSource" class="multiprofile.DataSource">
+            <property name="url" value="http://191.122.34.23/"></property>
+            <property name="username" value="pro"></property>
+            <property name="password" value="123456"></property>
+        </bean>
+    </beans>
+</beans>

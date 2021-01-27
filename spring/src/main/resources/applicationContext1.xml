@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        set方法注入
+        构造器注入
+        p名称空间注入
+
+        scope="singleton" 默认单例
+        scope="prototype" 多实例
+
+        name支持取多个值 通过book bo都能取到该bean
+    -->
+    <bean id="book1" class="bean.Book" name="book, bo">
+        <property name="id" value="1"></property>
+        <property name="name" value="西游记"></property>
+        <property name="price" value="12.23"></property>
+    </bean>
+
+    <bean id="book2" class="bean.Book">
+        <constructor-arg index="0" value="3"></constructor-arg>
+        <constructor-arg index="2" value="20.0"></constructor-arg>
+        <constructor-arg index="1" value="红楼梦"></constructor-arg>
+    </bean>
+
+    <bean id="book3" class="bean.Book">
+        <constructor-arg name="id" value="4"></constructor-arg>
+        <constructor-arg name="name" value="水浒传"></constructor-arg>
+        <constructor-arg name="price" value="32.00"></constructor-arg>
+    </bean>
+
+    <bean id="book4" class="bean.Book" p:id = "5" p:name="明晨" p:price="12"></bean>
+
+
+    <!--
+        静态工厂注入
+    -->
+    <bean id="bookFromStaticFactory" class="factory.StaticBookFactory" factory-method="getBook"></bean>
+
+    <!--
+        实例工厂注入
+        首先要提供工厂的实例，接着调用工厂方法
+    -->
+    <bean id="bookFactory" class="factory.BookFactory"></bean>
+    <bean id="bookFromFactory" class="bean.Book" factory-bean="bookFactory" factory-method="getBook"></bean>
+
+    <!--FactoryBeanTest-->
+    <bean id="bookFromFactoryBeanTest" class="factory.FactoryBeanTest"></bean>
+
+    <!--
+        BeanFactory是个bean 工厂，是一个工厂类(接口)。
+        它负责生产和管理bean，是 ioc 容器最底层的接口，是个ioc容器。
+
+        FactoryBean是个bean，在ioc容器的基础上给bean的实现加上了一个简单工厂模式和装饰模式，
+        是一个可以生产对象和装饰对象的工厂bean，由spring管理后，生产的对象是由getObject()方法决定的。
+    -->
+</beans>
